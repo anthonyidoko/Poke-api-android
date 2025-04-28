@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Pokemon</string>
+    <string name="action_back">Back</string>
+    <string name="pokemon_list">Pokemons</string>
+    <string name="pokemon_details">%s</string>
+    <string name="favourite_pokemons">Favourite Pokemon\n</string>
+    <string name="invalid_image">Invalid image size</string>
+    <string name="unknown_error">Something went wrong. Try again</string>
+    <string name="loading_pokemon">Loading Pokemon</string>
+    <string name="loading_abilities">Loading Abilities …</string>
+    <string name="an_error_occurred_while_loading_data">An error occurred while loading data</string>
+    <string name="no_more_data_to_load">No more data to load</string>
+    <string name="serialization_error">Serialization error</string>
+    <string name="invalid_request">Your request object is invalid</string>
+    <string name="timeout_exception">Request timed out. Please try again</string>
+    <string name="pokemon_details_title">%s Details</string>
+    <string name="abilities">Abilities</string>
+    <string name="empty"></string>
+    <string name="loading_more">Loading more ...</string>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs</item>
+    </array>
 </resources>

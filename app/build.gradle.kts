@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+
 }
 
 android {
@@ -38,6 +39,15 @@ android {
     buildFeatures {
         compose = true
     }
+
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
+    }
 }
 
 dependencies {
@@ -53,12 +63,21 @@ dependencies {
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.bundles.ktor)
     implementation(libs.bundles.coil)
-    implementation(libs.koin.android)
+    implementation(libs.bundles.koin)
+    implementation(libs.compose.navigation)
     testImplementation(libs.junit)
+    testImplementation(libs.bundles.junit5)
+    testImplementation(libs.mock.k)
+    testImplementation(libs.mock.instrumentation)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.mock.instrumentation)
+    androidTestImplementation(libs.mock.agent.instrumentation)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.test.coroutine)
+    debugImplementation(libs.test.coroutine)
+    implementation(libs.kotlin.serialization.dep)
 }

@@ -12,11 +12,24 @@ uiTextGoogleFonts = "1.7.8"
 ktor =  "3.1.1"
 coil = "3.1.0"
 koin = "4.0.0"
+navigation = "2.8.9"
+junitJupiter = "5.8.2"
+junitJupiterEngine = "5.10.1"
+junitJunit = "4.12"
+mockKVersion = "1.13.17"
+coroutineTest = "1.10.1"
+serial = "1.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
+junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junitJupiterEngine" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitJupiter" }
+
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -31,16 +44,27 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 ktor-android = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor"}
-ktor-engine = {group = "io.ktor", name = "ktor-client-android", version.ref = "ktor"}
+ktor-engine = {group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
 ktor-logging = {group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor"}
 ktor-content_negotiation = {group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor"}
-kotlinx-serilization = {group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
-
+kotlinx-ktor-serilization = {group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
 
 coil-compose = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil"}
 coil-network = {group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil"}
 
 koin-android = {group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
+koin-viemodel = {group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin"}
+
+compose-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+
+# MockK
+mock-k = {group = "io.mockk", name = "mockk", version.ref = "mockKVersion"}
+mock-instrumentation = {group = "io.mockk", name = "mockk-android", version.ref = "mockKVersion"}
+mock-agent-instrumentation = {group = "io.mockk", name = "mockk-agent", version.ref = "mockKVersion"}
+
+test_coroutine = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineTest"}
+
+kotlin-serialization-dep = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serial"}
 
 
 
@@ -51,6 +75,9 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
+
 [bundles]
-ktor = ["ktor-android","ktor-logging","ktor-content_negotiation","kotlinx-serilization","ktor-engine" ]
+ktor = ["ktor-android","ktor-logging","ktor-content_negotiation","kotlinx-ktor-serilization","ktor-engine" ]
 coil = ["coil-compose","coil-network"]
+koin = ["koin-viemodel","koin-android"]
+junit5 = ["junit-jupiter","junit-engine","junit-vintage-engine"]

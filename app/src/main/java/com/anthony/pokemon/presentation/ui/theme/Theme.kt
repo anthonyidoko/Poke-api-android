@@ -1,4 +1,4 @@
-package com.anthony.pokemon.ui.theme
+package com.anthony.pokemon.presentation.ui.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -220,7 +220,6 @@ import com.example.compose.tertiaryDarkMediumContrast
 import com.example.compose.tertiaryLight
 import com.example.compose.tertiaryLightHighContrast
 import com.example.compose.tertiaryLightMediumContrast
-import com.example.ui.theme.AppTypography
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
