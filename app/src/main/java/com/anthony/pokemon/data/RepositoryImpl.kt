@@ -11,10 +11,7 @@ import com.anthony.pokemon.domain.repository.PokemonRepository
 import com.anthony.pokemon.domain.util.DataError
 import com.anthony.pokemon.domain.util.Result
 import com.anthony.pokemon.domain.util.safeCall
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class RepositoryImpl(
     private val ktorDataSource: KtorDataSource

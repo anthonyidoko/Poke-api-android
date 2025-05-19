@@ -57,7 +57,7 @@ fun PokemonImage(
                     contentAlignment = Alignment.Center
                 ) {
                     ProgressIndicator(
-                        IndicatorSize.SMALL,
+                        size = IndicatorSize.SMALL,
                         trackColor = MaterialTheme.colorScheme.onPrimary
                     )
                 }

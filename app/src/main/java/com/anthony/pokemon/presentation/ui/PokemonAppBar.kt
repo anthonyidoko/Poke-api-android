@@ -31,7 +31,10 @@ fun PokemonTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     navHostController: NavController
     ){
-    var topBarUiText: UiText by remember { mutableStateOf(UiText.StaticText(R.string.empty)) }
+    var topBarUiText: UiText by remember {
+        mutableStateOf(UiText.StaticText(R.string.empty))
+    }
+
     navHostController.addOnDestinationChangedListener { controller, destination, _ ->
         val title = destination.getTopAppBarUiText(controller)
         topBarUiText = title
@@ -72,7 +75,6 @@ private fun NavDestination.getTopAppBarUiText(
             val name = args?.name.orEmpty()
             UiText.StaticText(R.string.pokemon_details_title, name)
         }
-
         else -> UiText.StaticText(R.string.empty)
     }
 

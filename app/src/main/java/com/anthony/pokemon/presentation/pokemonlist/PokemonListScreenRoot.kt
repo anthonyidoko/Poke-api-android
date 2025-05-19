@@ -14,9 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.anthony.pokemon.R
 import com.anthony.pokemon.domain.model.Pokemon
 import com.anthony.pokemon.presentation.common.IndicatorSize
 import com.anthony.pokemon.presentation.common.ProgressIndicator
@@ -48,7 +51,10 @@ fun PokemonListScreenRoot(
             contentAlignment = Alignment.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                ProgressIndicator(IndicatorSize.LARGE)
+                ProgressIndicator(
+                    modifier = Modifier.testTag(stringResource(R.string.loading_dialog_tag)),
+                    size = IndicatorSize.LARGE
+                )
                 Text(
                     modifier = Modifier.padding(top = 10.dp),
                     textAlign = TextAlign.Center,

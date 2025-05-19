@@ -23,4 +23,3 @@ fun NavGraphBuilder.pokemonDetailScreen() {
 fun NavHostController.navigateToPokemonDetailScreen(name: String) {
     navigate(PokemonDetail(name))
 }
-

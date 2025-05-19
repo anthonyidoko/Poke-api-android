@@ -13,10 +13,14 @@
     <string name="serialization_error">Serialization error</string>
     <string name="invalid_request">Your request object is invalid</string>
     <string name="timeout_exception">Request timed out. Please try again</string>
-    <string name="pokemon_details_title">%s Details</string>
+    <string name="pokemon_details_title">%1$s Details</string>
     <string name="abilities">Abilities</string>
-    <string name="empty"></string>
+    <string name="empty"> </string>
     <string name="loading_more">Loading more ...</string>
+    <string name="loading_dialog_tag">Loading Dialog Test Tag</string>
+    <string name="pokemon_card_test_tag">Pokemon Card Test Tag</string>
+    <string name="pokemon_card_test_tag_click">Pokemon Card Test Tag Clickable</string>
+    <string name="details_title_test_tag">Details Title Tag</string>
     <array name="com_google_android_gms_fonts_certs">
         <item>@array/com_google_android_gms_fonts_certs</item>
     </array>

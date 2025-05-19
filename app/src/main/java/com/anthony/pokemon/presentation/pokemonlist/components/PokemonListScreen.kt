@@ -44,7 +44,7 @@ fun PokemonListScreen(
         if (shouldLoadMore) {
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Row{
-                    ProgressIndicator(IndicatorSize.SMALL)
+                    ProgressIndicator(size = IndicatorSize.SMALL)
                     Text(
                         modifier = Modifier.weight(1f),
                         text= stringResource(R.string.loading_more))
