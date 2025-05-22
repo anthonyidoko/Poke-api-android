@@ -19,6 +19,10 @@ junitJunit = "4.12"
 mockKVersion = "1.13.17"
 coroutineTest = "1.10.1"
 serial = "1.8.0"
+room_version = "2.7.1"
+ksp_version = "2.0.21-1.0.27"
+appcompat = "1.7.0"
+material = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -66,6 +70,12 @@ test_coroutine = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-te
 
 kotlin-serialization-dep = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serial"}
 
+#Room
+room_runtime = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
+room_ksp = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
+kt_extension = {group = "androidx.room", name = "room-ktx", version.ref = "room_version"}
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 
 
@@ -74,6 +84,8 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp_version" }
+
 
 
 [bundles]
@@ -81,3 +93,4 @@ ktor = ["ktor-android","ktor-logging","ktor-content_negotiation","kotlinx-ktor-s
 coil = ["coil-compose","coil-network"]
 koin = ["koin-viemodel","koin-android"]
 junit5 = ["junit-jupiter","junit-engine","junit-vintage-engine"]
+room = ["room_runtime","kt_extension"]
