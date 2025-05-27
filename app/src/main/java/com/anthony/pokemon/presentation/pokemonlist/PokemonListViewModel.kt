@@ -27,7 +27,9 @@ import kotlinx.coroutines.runBlocking
 class PokemonListViewModel(
     private val getPokemonListUseCase: GetPokemonListUseCase
 ) : ViewModel() {
+
     private val _uiState = MutableStateFlow(PokemonListUiState())
+
     val state = _uiState.onStart {
         fetchPokemons()
     }.stateIn(

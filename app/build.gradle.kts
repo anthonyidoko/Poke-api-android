@@ -48,6 +48,13 @@ android {
             )
         }
     }
+
+    testOptions.unitTests {
+        isReturnDefaultValues = true
+        all { tests ->
+            tests.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
