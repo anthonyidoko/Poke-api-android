@@ -73,7 +73,7 @@ private fun NavDestination.getTopAppBarUiText(
         hasRoute<PokemonDetail>() -> {
             val args = controller.currentBackStackEntry?.toRoute<PokemonDetail>()
             val name = args?.name.orEmpty()
-            UiText.StaticText(R.string.pokemon_details_title, name)
+            UiText.StaticText(R.string.pokemon_details_title, listOf(name))
         }
         else -> UiText.StaticText(R.string.empty)
     }
