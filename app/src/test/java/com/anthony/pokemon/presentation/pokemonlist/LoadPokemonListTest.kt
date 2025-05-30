@@ -53,11 +53,37 @@ class LoadPokemonListTest {
         assertEquals(expectedDeliveredStates, actualDeliveredStates)
     }
 
+    @Test
+    fun pokemonLoadingFailure() = runTest {
+        val repository = FakeRepository().apply { setIsUnavailable() }
+        val useCase = GetPokemonListUseCase(repository)
+        val viewModel = PokemonListViewModel(useCase)
+
+        val actualDeliveredStates = collectFlow(viewModel.state)
+
+        val expectedDeliveredStates = listOf(
+            PokemonListUiState(),
+            PokemonListUiState(
+                loading = false,
+                loadingMessage = UiText.StaticText(R.string.loading_pokemon),
+                errorMessage = UiText.StaticText(R.string.unknown_error)
+            )
+        )
+        assertEquals(expectedDeliveredStates, actualDeliveredStates)
+    }
+
+
     class FakeRepository: PokemonRepository {
+
+        private var isUnavailable = false
+
         override fun getPokemonList(
             limit: Int,
             offset: Int
         ): Flow<Result<List<Pokemon>, DataError.Network>> {
+            if (isUnavailable) {
+                return flow { emit(Result.Error(DataError.Network.UnknownException)) }
+            }
             val data = emptyList<Pokemon>()
             return flow { emit(Result.Success(data)) }
         }
@@ -72,6 +98,10 @@ class LoadPokemonListTest {
 
         override fun fetchAbility(ability: PokemonAbility): Flow<Result<PokemonAbility, DataError.Network>> {
             TODO("Not yet implemented")
+        }
+
+        fun setIsUnavailable() {
+            isUnavailable = true
         }
     }
 }

@@ -72,7 +72,7 @@ class PokemonListViewModel(
             _uiState.update { state ->
                 state.copy(
                     loading = false
-
+                    //TODO Probably also reset back the loadingMessage to null
                 )
             }
         }.launchIn(viewModelScope)
