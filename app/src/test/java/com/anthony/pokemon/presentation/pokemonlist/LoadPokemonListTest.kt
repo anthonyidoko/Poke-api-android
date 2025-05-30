@@ -36,7 +36,7 @@ class LoadPokemonListTest {
     }
 
     @Test
-    fun initialPokemonLoad() = runTest {
+    fun pokemonListIsEmpty() = runTest {
         val repository = FakeRepository()
         val useCase = GetPokemonListUseCase(repository)
         val viewModel = PokemonListViewModel(useCase)
