@@ -21,6 +21,10 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(CoroutineTestExtension::class)
 class LoadPokemonListTest {
 
+    private val pikachu = Pokemon("Pikachu", null)
+    private val spearow = Pokemon("Spearow", null)
+    private val allPokemons = listOf(pikachu, spearow)
+
     @Test
     fun initialScreenStateIsDefault() {
         val repository = FakeRepository()
@@ -50,9 +54,6 @@ class LoadPokemonListTest {
 
     @Test
     fun pokemonListLoaded() = runTest {
-        val pikachu = Pokemon("Pikachu", null)
-        val spearow = Pokemon("Spearow", null)
-        val allPokemons = listOf(pikachu, spearow)
         val repository = FakeRepository(pokemonList = allPokemons)
         val useCase = GetPokemonListUseCase(repository)
         val viewModel = PokemonListViewModel(useCase)
@@ -64,7 +65,7 @@ class LoadPokemonListTest {
             PokemonListUiState(
                 loading = false,
                 loadingMessage = UiText.StaticText(R.string.loading_pokemon),
-                pokemons = listOf(pikachu, spearow)
+                pokemons = allPokemons
             )
         )
         assertEquals(expectedDeliveredStates, actualDeliveredStates)
@@ -92,7 +93,7 @@ class LoadPokemonListTest {
 
     class FakeRepository(
         private val pokemonList: List<Pokemon> = emptyList()
-    ): PokemonRepository {
+    ) : PokemonRepository {
 
         private var isUnavailable = false
 
