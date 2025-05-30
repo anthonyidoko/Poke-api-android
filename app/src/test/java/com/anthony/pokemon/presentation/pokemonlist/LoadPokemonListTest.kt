@@ -5,6 +5,7 @@ import com.anthony.pokemon.R
 import com.anthony.pokemon.collectFlow
 import com.anthony.pokemon.domain.model.Pokemon
 import com.anthony.pokemon.domain.model.PokemonAbility
+import com.anthony.pokemon.domain.model.PokemonBuilder.Companion.aPokemon
 import com.anthony.pokemon.domain.model.PokemonDetailData
 import com.anthony.pokemon.domain.repository.PokemonRepository
 import com.anthony.pokemon.domain.usecases.GetPokemonListUseCase
@@ -21,8 +22,8 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(CoroutineTestExtension::class)
 class LoadPokemonListTest {
 
-    private val pikachu = Pokemon("Pikachu", null)
-    private val spearow = Pokemon("Spearow", null)
+    private val pikachu = aPokemon().withName("Pikachu").build()
+    private val spearow = aPokemon().withName("Spearow").build()
     private val allPokemons = listOf(pikachu, spearow)
 
     @Test
@@ -89,7 +90,6 @@ class LoadPokemonListTest {
         )
         assertEquals(expectedDeliveredStates, actualDeliveredStates)
     }
-
 
     class FakeRepository(
         private val pokemonList: List<Pokemon> = emptyList()
