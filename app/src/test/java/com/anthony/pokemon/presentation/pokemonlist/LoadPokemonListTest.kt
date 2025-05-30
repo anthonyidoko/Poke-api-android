@@ -11,13 +11,8 @@ import com.anthony.pokemon.domain.usecases.GetPokemonListUseCase
 import com.anthony.pokemon.domain.util.DataError
 import com.anthony.pokemon.domain.util.Result
 import com.anthony.pokemon.presentation.common.UiText
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -54,6 +49,28 @@ class LoadPokemonListTest {
     }
 
     @Test
+    fun pokemonListLoaded() = runTest {
+        val pikachu = Pokemon("Pikachu", null)
+        val spearow = Pokemon("Spearow", null)
+        val allPokemons = listOf(pikachu, spearow)
+        val repository = FakeRepository(pokemonList = allPokemons)
+        val useCase = GetPokemonListUseCase(repository)
+        val viewModel = PokemonListViewModel(useCase)
+
+        val actualDeliveredStates = collectFlow(viewModel.state)
+
+        val expectedDeliveredStates = listOf(
+            PokemonListUiState(),
+            PokemonListUiState(
+                loading = false,
+                loadingMessage = UiText.StaticText(R.string.loading_pokemon),
+                pokemons = listOf(pikachu, spearow)
+            )
+        )
+        assertEquals(expectedDeliveredStates, actualDeliveredStates)
+    }
+
+    @Test
     fun pokemonLoadingFailure() = runTest {
         val repository = FakeRepository().apply { setIsUnavailable() }
         val useCase = GetPokemonListUseCase(repository)
@@ -73,7 +90,9 @@ class LoadPokemonListTest {
     }
 
 
-    class FakeRepository: PokemonRepository {
+    class FakeRepository(
+        private val pokemonList: List<Pokemon> = emptyList()
+    ): PokemonRepository {
 
         private var isUnavailable = false
 
@@ -84,8 +103,7 @@ class LoadPokemonListTest {
             if (isUnavailable) {
                 return flow { emit(Result.Error(DataError.Network.UnknownException)) }
             }
-            val data = emptyList<Pokemon>()
-            return flow { emit(Result.Success(data)) }
+            return flow { emit(Result.Success(pokemonList)) }
         }
 
         override fun getPokemonDetails(name: String): Flow<Result<PokemonDetailData, DataError.Network>> {
